@@ -442,8 +442,8 @@ namespace InlineIL.Fody
 
         private OpCode ConsumeArgOpCode(Instruction instruction)
         {
-            _il.Remove(instruction);
-            return OpCodeMap.FromLdsfld(instruction);
+            var value = ConsumeArgInt32(instruction);
+            return OpCodeMap.GetByValue(value);
         }
 
         [NotNull]

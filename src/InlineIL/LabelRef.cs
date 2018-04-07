@@ -3,7 +3,7 @@
 namespace InlineIL
 {
     /// <summary>
-    /// Represents a label reference, for use with <see cref="IL.Emit(System.Reflection.Emit.OpCode, LabelRef)" />.
+    /// Represents a label reference, for use with <see cref="IL.Emit(OpCodes, LabelRef)" />.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedParameter.Local")]
     public sealed class LabelRef

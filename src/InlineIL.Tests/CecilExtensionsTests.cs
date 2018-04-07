@@ -8,6 +8,8 @@ using Xunit;
 
 namespace InlineIL.Tests
 {
+    using OpCodes = Mono.Cecil.Cil.OpCodes;
+
     public class CecilExtensionsTests : IDisposable
     {
         private readonly AssemblyDefinition _assembly;

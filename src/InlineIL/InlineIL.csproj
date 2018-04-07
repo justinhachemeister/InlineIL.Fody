@@ -26,4 +26,20 @@
     <PackageReference Include="FodyPackaging" Version="3.0.1" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="OpCodes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OpCodes.cs</LastGenOutput>
+    </None>
+    <Compile Update="OpCodes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OpCodes.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
 </Project>

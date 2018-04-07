@@ -3,7 +3,7 @@
 namespace InlineIL
 {
     /// <summary>
-    /// Represents a named local variable reference, for use with <see cref="IL.Emit(System.Reflection.Emit.OpCode, LocalRef)" />.
+    /// Represents a named local variable reference, for use with <see cref="IL.Emit(OpCodes, LocalRef)" />.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedParameter.Local")]
     public sealed class LocalRef

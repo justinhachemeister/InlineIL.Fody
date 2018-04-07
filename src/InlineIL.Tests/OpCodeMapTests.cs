@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using InlineIL.Fody;
@@ -9,6 +9,8 @@ using Xunit.Abstractions;
 
 namespace InlineIL.Tests
 {
+    using OpCodes = Mono.Cecil.Cil.OpCodes;
+
     public class OpCodeMapTests
     {
         private readonly ITestOutputHelper _output;
@@ -18,7 +20,7 @@ namespace InlineIL.Tests
             _output = output;
         }
 
-        [Fact(Skip = "Manual test")]
+        [Fact]
         public void PrintMap()
         {
             var cecilCodes = typeof(OpCodes)
@@ -33,24 +35,26 @@ namespace InlineIL.Tests
                                       .Select(field => (System.Reflection.Emit.OpCode)field.GetValue(null))
                                       .ToDictionary(i => i.Value);
 
-            var maxCode = Math.Max(cecilCodes.Keys.Max(), reflectionEmitCodes.Keys.Max());
+            var values = new HashSet<short>();
+            values.UnionWith(cecilCodes.Keys);
+            values.UnionWith(reflectionEmitCodes.Keys);
 
-            for (short i = 0; i < maxCode; ++i)
+            foreach (var value in values.OrderBy(i => unchecked((ushort)i)))
             {
-                var reflectionEmitCode = reflectionEmitCodes.TryGetValue(i, out var reflectionEmitOpCode) ? reflectionEmitOpCode.Name : "???";
-                var cecilCode = cecilCodes.TryGetValue(i, out var cecilOpCode) ? cecilOpCode.Name : "???";
+                var reflectionEmitCode = reflectionEmitCodes.TryGetValue(value, out var reflectionEmitOpCode) ? reflectionEmitOpCode.Name : "???";
+                var cecilCode = cecilCodes.TryGetValue(value, out var cecilOpCode) ? cecilOpCode.Name : "???";
 
-                _output.WriteLine($"{i:X4}: {reflectionEmitCode,-15} {cecilCode,-15}");
+                _output.WriteLine($"{value:X4}: {reflectionEmitCode,-15} {cecilCode,-15}");
             }
         }
 
         [Fact]
         public void should_map_opcodes()
         {
-            OpCodeMap.FromReflectionEmit(System.Reflection.Emit.OpCodes.Nop).ShouldEqual(OpCodes.Nop);
-            OpCodeMap.FromReflectionEmit(System.Reflection.Emit.OpCodes.Dup).ShouldEqual(OpCodes.Dup);
-            OpCodeMap.FromReflectionEmit(System.Reflection.Emit.OpCodes.Leave).ShouldEqual(OpCodes.Leave);
-            OpCodeMap.FromReflectionEmit(System.Reflection.Emit.OpCodes.Sizeof).ShouldEqual(OpCodes.Sizeof);
+            OpCodeMap.GetByValue(OpCodes.Nop.Value).ShouldEqual(OpCodes.Nop);
+            OpCodeMap.GetByValue(OpCodes.Dup.Value).ShouldEqual(OpCodes.Dup);
+            OpCodeMap.GetByValue(OpCodes.Leave.Value).ShouldEqual(OpCodes.Leave);
+            OpCodeMap.GetByValue(OpCodes.Sizeof.Value).ShouldEqual(OpCodes.Sizeof);
         }
     }
 }

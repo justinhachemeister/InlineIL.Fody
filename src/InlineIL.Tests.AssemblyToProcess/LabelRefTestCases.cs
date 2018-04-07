@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Emit;
 using InlineIL;
 
 [SuppressMessage("ReSharper", "UnusedMember.Global")]

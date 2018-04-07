@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Emit;
 using InlineIL;
 
 [SuppressMessage("ReSharper", "UnusedMember.Global")]
@@ -21,18 +20,18 @@ public class TypeRefTestCases
         IL.Push(result);
         IL.Emit(OpCodes.Ldc_I4_0);
         IL.Emit(OpCodes.Ldtoken, typeof(int));
-        IL.Emit(OpCodes.Stelem, typeof(RuntimeTypeHandle));
+        IL.Emit(OpCodes.Stelem_Any, typeof(RuntimeTypeHandle));
 
         IL.Push(result);
         IL.Emit(OpCodes.Ldc_I4_1);
         IL.Emit(OpCodes.Ldtoken, new TypeRef(typeof(int)));
-        IL.Emit(OpCodes.Stelem, new TypeRef(typeof(RuntimeTypeHandle)));
+        IL.Emit(OpCodes.Stelem_Any, new TypeRef(typeof(RuntimeTypeHandle)));
 
         IL.Push(result);
         IL.Emit(OpCodes.Ldc_I4_2);
 
         IL.Emit(OpCodes.Ldtoken, new TypeRef(TypeRef.CoreLibrary, "System.Int32"));
-        IL.Emit(OpCodes.Stelem, new TypeRef(TypeRef.CoreLibrary, "System.RuntimeTypeHandle"));
+        IL.Emit(OpCodes.Stelem_Any, new TypeRef(TypeRef.CoreLibrary, "System.RuntimeTypeHandle"));
 
         return result;
     }

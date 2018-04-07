@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection.Emit;
 
 namespace InlineIL
 {
@@ -16,7 +15,7 @@ namespace InlineIL
         /// Emits an IL instruction.
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
-        public static void Emit(OpCode opCode)
+        public static void Emit(OpCodes opCode)
             => Throw();
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand.</param>
-        public static void Emit(OpCode opCode, string arg)
+        public static void Emit(OpCodes opCode, string arg)
             => Throw();
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand.</param>
-        public static void Emit(OpCode opCode, int arg)
+        public static void Emit(OpCodes opCode, int arg)
             => Throw();
 
         /// <summary>
@@ -40,7 +39,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand.</param>
-        public static void Emit(OpCode opCode, long arg)
+        public static void Emit(OpCodes opCode, long arg)
             => Throw();
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand.</param>
-        public static void Emit(OpCode opCode, double arg)
+        public static void Emit(OpCodes opCode, double arg)
             => Throw();
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace InlineIL
         /// The instruction operand representing a type.
         /// Note that <see cref="Type" /> is implicitly convertible to <see cref="TypeRef"/>.
         /// </param>
-        public static void Emit(OpCode opCode, TypeRef arg)
+        public static void Emit(OpCodes opCode, TypeRef arg)
             => Throw();
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand representing a method.</param>
-        public static void Emit(OpCode opCode, MethodRef arg)
+        public static void Emit(OpCodes opCode, MethodRef arg)
             => Throw();
 
         /// <summary>
@@ -75,7 +74,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand representing a field.</param>
-        public static void Emit(OpCode opCode, FieldRef arg)
+        public static void Emit(OpCodes opCode, FieldRef arg)
             => Throw();
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand representing a label declared with <see cref="MarkLabel"/>.</param>
-        public static void Emit(OpCode opCode, LabelRef arg)
+        public static void Emit(OpCodes opCode, LabelRef arg)
             => Throw();
 
         /// <summary>
@@ -91,7 +90,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit.</param>
         /// <param name="arg">The instruction operand representing a local variable decalred with <see cref="DeclareLocals(InlineIL.LocalVar[])"/>.</param>
-        public static void Emit(OpCode opCode, LocalRef arg)
+        public static void Emit(OpCodes opCode, LocalRef arg)
             => Throw();
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit, must be <see cref="OpCodes.Switch"/>.</param>
         /// <param name="args">The instruction operand representing the targets of the switch declared with <see cref="MarkLabel"/>.</param>
-        public static void Emit(OpCode opCode, params LabelRef[] args)
+        public static void Emit(OpCodes opCode, params LabelRef[] args)
             => Throw();
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace InlineIL
         /// </summary>
         /// <param name="opCode">The instruction opcode to emit, must be <see cref="OpCodes.Calli"/>.</param>
         /// <param name="arg">The instruction operand representing the call signature.</param>
-        public static void Emit(OpCode opCode, StandAloneMethodSig arg)
+        public static void Emit(OpCodes opCode, StandAloneMethodSig arg)
             => Throw();
 
         /// <summary>

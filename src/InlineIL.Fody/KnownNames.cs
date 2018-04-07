@@ -7,6 +7,7 @@ namespace InlineIL.Fody
         public static class Short
         {
             public const string IlType = "IL";
+            public const string OpCodesType = "OpCodes";
             public const string TypeRefType = "TypeRef";
             public const string MethodRefType = "MethodRef";
             public const string FieldRefType = "FieldRef";
@@ -28,6 +29,7 @@ namespace InlineIL.Fody
             private const string _nsPrefix = "InlineIL.";
 
             public const string IlType = _nsPrefix + Short.IlType;
+            public const string OpCodesType = _nsPrefix + Short.OpCodesType;
             public const string TypeRefType = _nsPrefix + Short.TypeRefType;
             public const string MethodRefType = _nsPrefix + Short.MethodRefType;
             public const string FieldRefType = _nsPrefix + Short.FieldRefType;
@@ -39,6 +41,7 @@ namespace InlineIL.Fody
             public static readonly HashSet<string> AllTypes = new HashSet<string>
             {
                 IlType,
+                OpCodesType,
                 TypeRefType,
                 MethodRefType,
                 FieldRefType,

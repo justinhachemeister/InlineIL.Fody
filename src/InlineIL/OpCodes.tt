@@ -1,0 +1,42 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="Mono.Cecil" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Mono.Cecil.Cil" #>
+<#@ output extension=".cs" #>
+<#
+    var cecilCodes = typeof(OpCodes)
+                    .GetFields(BindingFlags.Public | BindingFlags.Static)
+                    .Where(field => field.IsInitOnly && field.FieldType == typeof(OpCode))
+                    .Select(field => (fieldName: field.Name, opCode: (OpCode)field.GetValue(null)))
+                    .OrderBy(i => unchecked((ushort)i.opCode.Value))
+                    .ToList();
+#>
+using System.Diagnostics.CodeAnalysis;
+
+namespace InlineIL
+{
+    /// <summary>
+    /// IL OpCodes for use with <see cref="IL.Emit(OpCodes)"/>
+    /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public enum OpCodes
+    {
+<#
+    foreach (var item in cecilCodes)
+    {
+#>
+        /// <summary>
+        /// <#= item.opCode.Name #>
+        /// </summary>
+        <#= item.fieldName #> = <#= item.opCode.Value #>,
+
+<#
+    }
+#>
+    }
+}
